@@ -11,6 +11,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.dogsapp.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -21,8 +22,6 @@ import butterknife.ButterKnife;
 
 public class ListFragment extends Fragment {
 
-    @BindView(R.id.floatingActionButton)
-    FloatingActionButton fab;
 
     public ListFragment() {
         // Required empty public constructor
@@ -36,14 +35,6 @@ public class ListFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        fab.setOnClickListener(v->{onGoToDetails();});
-    }
 
-    void onGoToDetails(){
-        NavDirections action=ListFragmentDirections.actionDetail();
-        Navigation.findNavController(fab).navigate(action);
-    }
+
 }
