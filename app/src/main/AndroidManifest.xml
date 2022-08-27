@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DogsApp"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        tools:replace="android:allowBackup">
         <activity
             android:name=".view.MainActivity"
             android:exported="true">

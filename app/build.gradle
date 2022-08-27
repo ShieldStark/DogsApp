@@ -37,6 +37,8 @@ def rxJavaVersion = '2.1.1'
 def roomVersion = '2.1.0-rc01'
 def navVersion = '2.1.0-alpha05'
 def preferencesVersion = '1.0.0'
+def multidex_version = "2.0.1"
+
 
 dependencies {
 
@@ -44,6 +46,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
+    //noinspection GradleCompatible,GradleCompatible
     implementation "com.android.support:design:$supportVersion"
     implementation "android.arch.lifecycle:extensions:$lifecycleExtensionVersion"
 
@@ -68,15 +71,15 @@ dependencies {
 
     implementation "com.github.bumptech.glide:glide:$glideVersion"
 
+    //noinspection GradleCompatible
     implementation "com.android.support:palette-v7:$supportVersion"
 
     implementation "androidx.preference:preference:$preferencesVersion"
 
     implementation "com.google.firebase:firebase-core:16.0.8"
 
-    implementation "com.android.support:multidex:1.0.3"
 
-
+    implementation "androidx.multidex:multidex:$multidex_version"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
