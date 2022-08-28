@@ -79,6 +79,7 @@ public class ListFragment extends Fragment {
             listError.setVisibility(View.GONE);
             loadingView.setVisibility(View.VISIBLE);
             refreshLayout.setRefreshing(false);
+            viewModel.refreshByPassCache();
         });
         observeViewModel();
     }
