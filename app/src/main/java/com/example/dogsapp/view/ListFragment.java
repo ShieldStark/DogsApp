@@ -66,7 +66,7 @@ public class ListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        
+
 
         viewModel= new ViewModelProvider(this).get(ListViewModel.class);
         viewModel.refresh();
