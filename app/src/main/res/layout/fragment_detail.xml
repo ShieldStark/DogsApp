@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <data>
+        <variable
+            name="dog"
+            type="com.example.dogsapp.model.DogBreed" />
+    </data>
+<RelativeLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,6 +20,7 @@
         android:id="@+id/dogImage"
         android:layout_alignParentTop="true"
         android:src="@drawable/ic_launcher_background"
+        android:imageUrl="@{dog.imageUrl}"
         android:minHeight="200dp"
         android:scaleType="fitCenter" />
 
@@ -21,7 +30,7 @@
         android:id="@+id/dogName"
         style="@style/Title"
         android:layout_margin="4dp"
-        android:text="Dog name"
+        android:text="@{dog.dogBreed}"
         android:layout_below="@id/dogImage"
         android:layout_centerHorizontal="true"/>
 
@@ -33,7 +42,7 @@
         android:layout_margin="4dp"
         android:layout_below="@id/dogName"
         android:layout_centerHorizontal="true"
-        android:text="dog purpose"/>
+        android:text="@{dog.bredFor}"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,7 +51,7 @@
         android:layout_margin="4dp"
         android:layout_below="@id/dogPurpose"
         android:layout_centerHorizontal="true"
-        android:text="dog temperament"/>
+        android:text="@{dog.temperament}"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,9 +60,10 @@
         android:layout_margin="4dp"
         android:layout_below="@id/dogTemperament"
         android:layout_centerHorizontal="true"
-        android:text="dog lifespan"/>
+        android:text="@{dog.lifeSpan}"/>
 
 
 
 
 </RelativeLayout>
+</layout>

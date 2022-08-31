@@ -20,7 +20,7 @@ import com.example.dogsapp.util.Util;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DogsListAdapter extends RecyclerView.Adapter<DogsListAdapter.DogViewHolder> {
+public class DogsListAdapter extends RecyclerView.Adapter<DogsListAdapter.DogViewHolder> implements DogsClickListener {
 
     private ArrayList<DogBreed> dogsList;
     public DogsListAdapter(ArrayList<DogBreed> dogsList){
@@ -44,6 +44,7 @@ public class DogsListAdapter extends RecyclerView.Adapter<DogsListAdapter.DogVie
     public void onBindViewHolder(@NonNull DogViewHolder holder, int position) {
 
         holder.itemView.setDog(dogsList.get(position));
+        holder.itemView.setListener(this);
 
 
         //        ImageView image=holder.itemView.findViewById(R.id.imageView);
@@ -66,6 +67,16 @@ public class DogsListAdapter extends RecyclerView.Adapter<DogsListAdapter.DogVie
     public int getItemCount() {
        return dogsList.size();
     }
+
+    @Override
+    public void onDogClicked(View v) {
+        String uuidString=((TextView)v.findViewById(R.id.dogId)).getText().toString();
+        int uuid=Integer.parseInt(uuidString);
+        ListFragmentDirections.ActionDetail action=ListFragmentDirections.actionDetail();
+        action.setDogUuid(uuid);
+        Navigation.findNavController(v).navigate(action);
+    }
+
     class DogViewHolder extends RecyclerView.ViewHolder{
         public ItemDogBinding itemView;
         public DogViewHolder(@NonNull ItemDogBinding itemView) {
