@@ -15,6 +15,9 @@
             app:destination="@id/detailFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/actionSettings"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -28,5 +31,11 @@
             android:name="dogUuid"
             app:argType="integer"
             android:defaultValue="5" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.dogsapp.view.SettingsFragment"
+        android:label="SettingsFragment">
+
     </fragment>
 </navigation>

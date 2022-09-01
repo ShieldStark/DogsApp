@@ -65,7 +65,22 @@ public class ListViewModel extends AndroidViewModel {
     public void refreshByPassCache(){
         fetchFromRemote();
     }
+
+    private void checkCacheDuration(){
+        String cachePreference= prefHelper.getCacheDuration();
+        if(!cachePreference.equals("")){
+            try{
+                int cachePreferencesInt=Integer.parseInt(cachePreference);
+                refreshTime=cachePreferencesInt*1000*1000*1000L;
+            }catch (NumberFormatException e){
+                e.printStackTrace();
+            }
+        }
+
+    }
+
     private void fetchFromRemote(){
+        checkCacheDuration();
         loading.setValue(true);
         disposable.add(
         dogsApiService.getDogs()
