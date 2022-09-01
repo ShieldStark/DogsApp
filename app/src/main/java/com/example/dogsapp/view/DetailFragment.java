@@ -1,5 +1,7 @@
 package com.example.dogsapp.view;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +12,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
+import androidx.palette.graphics.Palette;
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
 
 import android.view.LayoutInflater;
@@ -18,9 +21,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.example.dogsapp.R;
 import com.example.dogsapp.databinding.FragmentDetailBinding;
 import com.example.dogsapp.model.DogBreed;
+import com.example.dogsapp.model.DogPalette;
 import com.example.dogsapp.util.Util;
 import com.example.dogsapp.viewmodel.DetailViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -81,6 +88,9 @@ public class DetailFragment extends Fragment {
         viewModel.dogLiveData.observe(getViewLifecycleOwner(), dogBreed -> {
             if(dogBreed!=null && dogBreed instanceof DogBreed && getContext()!=null){
                 binding.setDog(dogBreed);
+                if(dogBreed.imageUrl!=null){
+                    setUpBackgroundColor(dogBreed.imageUrl);
+                }
 
 
                 //                dogName.setText(dogBreed.dogBreed);
@@ -93,5 +103,26 @@ public class DetailFragment extends Fragment {
 //                }
             }
         });
+    }
+    private void setUpBackgroundColor(String url){
+        Glide.with(this)
+                .asBitmap()
+                .load(url)
+                .into(new CustomTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                        Palette.from(resource)
+                                .generate(palette -> {
+                                    int intColor=palette.getLightMutedSwatch().getRgb();
+                                    DogPalette myPalette=new DogPalette(intColor);
+                                    binding.setPalette(myPalette);
+                                });
+                    }
+
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                    }
+                });
     }
 }
